@@ -3,7 +3,7 @@
 import { AppBar, Box, Button, IconButton, Menu, MenuItem, Toolbar, Typography } from "@mui/material";
 import Image from "next/image";
 import Logo from "../../public/AviationMobile.png"
-import { TableRows } from "@mui/icons-material";
+import { ArrowBack, ArrowForward, TableRows } from "@mui/icons-material";
 import { useState } from "react";
 import { handleAircraftReport, handleMainMenu, handleMechanicalProblem, handleSchedule, handleStartFlight } from "../routes";
 import { useRouter } from "next/navigation";
@@ -41,10 +41,12 @@ export default function Navbar({ navbarName }) {
         setAnchor2(null);
     };
 
-    const handleClickOutside = (event) => {
-        if (calendarAnchorEl && !calendarAnchorEl.contains(event.target)) {
-            handleCalendarClose();
-        }
+    const handlePrevDay = () => {
+        setValue(prev => prev.subtract(1, 'day'));
+    };
+
+    const handleNextDay = () => {
+        setValue(prev => prev.add(1, 'day'));
     };
 
     return (
@@ -90,7 +92,7 @@ export default function Navbar({ navbarName }) {
                     flexDirection={"column"}
                     marginBottom={"auto"}
                     marginTop={"10px"}
-                    width={"180px"}
+                    width={"240px"}
                     alignItems={"center"}
                 >
                     <Button
@@ -101,7 +103,8 @@ export default function Navbar({ navbarName }) {
                             '&:hover': {
                                 backgroundColor: '#FFD54F',
                             },
-                            width: "100px"
+                            width: "120px",
+                            border: "2px solid black"
                         }}
                         onClick={handleMenu}
                     >
@@ -114,11 +117,23 @@ export default function Navbar({ navbarName }) {
                         alignItems={"center"}
                         bgcolor={"#6082B6"}
                         height={"40px"}
-                        width={"200px"}
+                        width={"240px"}
                         color={"white"}
                         marginTop={"25px"}
+                        border={"2px solid black"}
+                        borderRadius={"10px 10px 10px 10px"}
                     >
+                        <IconButton onClick={handlePrevDay}>
+                            <ArrowBack sx={{ color: "white"}}/>
+                        </IconButton>
 
+                        <Typography sx={{ color: "white" }}>
+                            {value.format('MMM D, YYYY')}
+                        </Typography>
+
+                        <IconButton onClick={handleNextDay}>
+                            <ArrowForward sx={{ color: "white"}}/>
+                        </IconButton>
 
                         <IconButton onClick={handleCalendarOpen}>
                             <CalendarIcon sx={{ color: "white"}}/>
@@ -131,12 +146,15 @@ export default function Navbar({ navbarName }) {
                         sx={{
                             "& .MuiPaper-root": {
                                 display: "flex",
-                                width: 305,
-                                height: 320,
+                                justifyContent: "center",
+                                alignItems: "center",
+                                paddingTop: "20px",
+                                width: 300,
+                                height: 300,
                                 backgroundColor: "#6082B6",
                                 borderRadius: "10px",
                                 border: "2px solid black",
-                                overflow: "hidden"
+                                overflow: "hidden",
                             },
                         }}
                         anchorOrigin={{

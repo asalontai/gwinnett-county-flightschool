@@ -182,7 +182,7 @@ export default function Navbar({ navbarName }) {
                     id="menu-appbar"
                     anchorEl={anchorE1}
                     anchorOrigin={{
-                        vertical: "top",
+                        vertical: "bottom",
                         horizontal: "right",
                     }}
                     keepMounted

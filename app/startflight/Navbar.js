@@ -14,31 +14,26 @@ import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 
 export default function Navbar({ navbarName }) {
-    const [anchor1, setAnchor1] = useState(null);
-    const [anchor2, setAnchor2] = useState(null);
-    const [open, setOpen] = useState(false);
+    const [anchorE1, setAnchorE1] = useState(null);
+    const [calendarE1, setCalendarE1] = useState(null);
     const [value, setValue] = useState(dayjs(Date.now()));
 
     const router = useRouter();
 
-    const handleCalendar = () => {
-        setOpen(!open)
-    }
-
     const handleMenu = (event) => {
-        setAnchor1(event.currentTarget);
+        setAnchorE1(event.currentTarget);
       };
     
     const handleClosing = () => {
-        setAnchor1(null);
+        setAnchorE1(null);
     };
 
     const handleCalendarOpen = (event) => {
-        setAnchor2(event.currentTarget);
+        setCalendarE1(event.currentTarget);
     };
 
     const handleCalendarClose = () => {
-        setAnchor2(null);
+        setCalendarE1(null);
     };
 
     const handlePrevDay = () => {
@@ -119,7 +114,7 @@ export default function Navbar({ navbarName }) {
                         height={"40px"}
                         width={"240px"}
                         color={"white"}
-                        marginTop={"25px"}
+                        marginTop={"20px"}
                         border={"2px solid black"}
                         borderRadius={"10px 10px 10px 10px"}
                     >
@@ -140,8 +135,8 @@ export default function Navbar({ navbarName }) {
                         </IconButton>
                     </Box>
                     <Menu
-                        anchorEl={anchor2}
-                        open={Boolean(anchor2)}
+                        anchorEl={calendarE1}
+                        open={Boolean(calendarE1)}
                         onClose={handleCalendarClose}
                         sx={{
                             "& .MuiPaper-root": {
@@ -151,7 +146,7 @@ export default function Navbar({ navbarName }) {
                                 paddingTop: "20px",
                                 width: 300,
                                 height: 300,
-                                backgroundColor: "#6082B6",
+                                backgroundColor: "#white",
                                 borderRadius: "10px",
                                 border: "2px solid black",
                                 overflow: "hidden",
@@ -175,7 +170,7 @@ export default function Navbar({ navbarName }) {
                                         sx={{ 
                                             width: '100%', 
                                             height: '100%',
-                                            color: "white"
+                                            color: "black"
                                         }}    
                                     />
                                 </DemoItem>
@@ -185,7 +180,7 @@ export default function Navbar({ navbarName }) {
                 </Box>
                 <Menu
                     id="menu-appbar"
-                    anchorEl={anchor1}
+                    anchorEl={anchorE1}
                     anchorOrigin={{
                         vertical: "top",
                         horizontal: "right",
@@ -195,19 +190,26 @@ export default function Navbar({ navbarName }) {
                         vertical: "top",
                         horizontal: "right",
                     }}
-                    open={Boolean(anchor1)}
+                    open={Boolean(anchorE1)}
                     onClose={handleClosing}
                     sx={{
                         "& .MuiPaper-root": {
-                            backgroundColor: "black",
-                            color: "white",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            backgroundColor: "white",
+                            borderRadius: "10px",
+                            border: "2px solid black",
+                            overflow: "hidden",
+                            color: "black",
+                            height: "190px"
                         },
                     }}
                 >
-                    <MenuItem onClick={() => handleMainMenu(router)}>Main Menu</MenuItem>
-                    <MenuItem onClick={() => handleStartFlight(router)}>Start Flight</MenuItem>
-                    <MenuItem onClick={() => handleSchedule(router)}>Schedule</MenuItem>
-                    <MenuItem onClick={() => handleAircraftReport(router)}>Aircraft Report</MenuItem>
+                    <MenuItem onClick={() => handleMainMenu(router)} sx={{ borderBottom: "1px solid black"}}>Main Menu</MenuItem>
+                    <MenuItem onClick={() => handleStartFlight(router)} sx={{ borderBottom: "1px solid black"}}>Start Flight</MenuItem>
+                    <MenuItem onClick={() => handleSchedule(router)} sx={{ borderBottom: "1px solid black"}}>Schedule</MenuItem>
+                    <MenuItem onClick={() => handleAircraftReport(router)} sx={{ borderBottom: "1px solid black"}}>Aircraft Report</MenuItem>
                     <MenuItem onClick={() => handleMechanicalProblem(router)}>Mechanical Problem</MenuItem>
                 </Menu>
             </Toolbar>

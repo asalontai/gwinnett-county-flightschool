@@ -146,6 +146,7 @@ export default function Stats({ open }) {
                 border={"2px solid black"}
                 justifyContent={"center"}
                 alignItems={"center"}
+                borderRadius={"10px 10px 10px 10px"}
             >
                 <Payment sx={{ color: "black", marginRight: "5px" }} />
                 <Typography variant="h6">$1,000 Hull Damage Protection @ $2.50 per hour:</Typography>
@@ -196,6 +197,7 @@ export default function Stats({ open }) {
                         '&:hover': {
                             backgroundColor: '#FFD54F',
                         },
+                        border: "2px solid black"
                     }}
                 >
                     Start Flight
